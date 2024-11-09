@@ -10,22 +10,31 @@
     <div class="d-flex justify-content-center">
         <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; margin-top: 20px; border-radius: 15px;">
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('employees.store') }}" method="POST">
                     @csrf
 
                     <div class="form-group mb-4">
-                        <label for="first_name" class="font-weight-bold text-secondary">First Name</label>
-                        <input type="text" class="form-control border-primary shadow-sm" name="first_name" required placeholder="Enter first name">
+                        <label for="first_name" class="font-weight-bold text-secondary">First Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control border-primary shadow-sm" name="first_name"  placeholder="Enter first name">
                     </div>
 
                     <div class="form-group mb-4">
-                        <label for="last_name" class="font-weight-bold text-secondary">Last Name</label>
-                        <input type="text" class="form-control border-primary shadow-sm" name="last_name" required placeholder="Enter last name">
+                        <label for="last_name" class="font-weight-bold text-secondary">Last Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control border-primary shadow-sm" name="last_name" placeholder="Enter last name">
                     </div>
 
                     <div class="form-group mb-4">
-                        <label for="company_id" class="font-weight-bold text-secondary">Company</label>
-                        <select name="company_id" class="form-control border-primary shadow-sm" required>
+                        <label for="company_id" class="font-weight-bold text-secondary">Company <span class="text-danger">*</span></label>
+                        <select name="company_id" class="form-control border-primary shadow-sm" >
                             @foreach($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                             @endforeach

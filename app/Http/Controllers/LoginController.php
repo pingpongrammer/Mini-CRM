@@ -23,7 +23,7 @@ class LoginController extends Controller
             return redirect()->intended('companies');
         }
 
-        return back()->withErrors(['email' => 'Invalid Credentials']);
+        return back()->withErrors(['alert' => 'Invalid Credentials']);
     }
 
     public function logout(Request $request)

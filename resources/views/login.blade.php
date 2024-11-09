@@ -10,6 +10,11 @@
         </div>
     </div>
 </div>
+    @if ($errors->any())
+        <div id="error-message" class="alert alert-danger p-4 my-4 text-sm rounded-lg bg-danger bg-opacity-10 text-danger" role="alert">
+            {{ $errors->first() }}
+        </div>
+    @endif
     <form action="{{ url('login') }}" method="POST">
         @csrf
         <div class="row gy-3 gy-md-4 overflow-hidden">

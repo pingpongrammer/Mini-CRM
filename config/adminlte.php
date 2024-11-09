@@ -335,16 +335,6 @@ return [
             'icon' => 'fas fa-user-tie',
         ],
 
-        [
-            'type' => 'sidebar-menu',
-            'text' => 'Logout',
-            'url' => '#', 
-            'icon' => 'fas fa-sign-out-alt',
-             'id' => 'logout-sidebar',
-            'onclick' => "event.preventDefault(); document.getElementById('logout-form').submit();"
-        ],
-        
-
         
     ],
 

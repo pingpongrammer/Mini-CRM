@@ -22,8 +22,8 @@ class CompanyController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'nullable|email',
-            'logo' => 'nullable|image|mimes:jpg,jpeg,png|dimensions:min_width=100,min_height=100',
+            'email' => 'required|email',
+            'logo' => 'required|image|mimes:jpg,jpeg,png|dimensions:min_width=100,min_height=100',
             'website' => 'nullable|url',
         ]);
     
@@ -35,7 +35,7 @@ class CompanyController extends Controller
     
         $company = Company::create($data);
     
-        Mail::to('karlcabalquinto07@gmail.com')->send(new CompanyCreated($company));
+        Mail::to('admin@admin.Com')->send(new CompanyCreated($company));
     
         return redirect()->route('companies.index');
     }

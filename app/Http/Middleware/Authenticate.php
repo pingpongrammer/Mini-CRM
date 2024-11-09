@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -20,6 +19,6 @@ class Authenticate
             return $next($request); 
         }
 
-        return redirect()->route('companies');
+        return redirect()->route('login');
     }
 }
