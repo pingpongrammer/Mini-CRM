@@ -14,7 +14,6 @@ class Company extends Model
         'website',
     ];
 
-    // Define the relationship with the Employee model
     public function employees()
     {
         return $this->hasMany(Employee::class);
