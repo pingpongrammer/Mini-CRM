@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Mail\CompanyCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CompanyController extends Controller
 {
@@ -16,12 +18,13 @@ class CompanyController extends Controller
     {
         return view('companies.create');
     }
-
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|dimensions:min_width=100,min_height=100'
+            'name' => 'required|string',
+            'email' => 'nullable|email',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png|dimensions:min_width=100,min_height=100',
+            'website' => 'nullable|url',
         ]);
     
         $data = $request->all();
@@ -30,9 +33,13 @@ class CompanyController extends Controller
             $data['logo'] = $request->file('logo')->store('logos', 'public');
         }
     
-        Company::create($data);
+        $company = Company::create($data);
+    
+        Mail::to('karlcabalquinto07@gmail.com')->send(new CompanyCreated($company));
+    
         return redirect()->route('companies.index');
     }
+    
     
 
     public function edit($id)

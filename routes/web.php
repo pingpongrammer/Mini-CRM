@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CompanyController;
@@ -14,6 +15,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 
 
-Route::resource('companies', CompanyController::class);
-Route::resource('employees', EmployeeController::class);
-
+Route::middleware(Authenticate::class)->group(function () {
+    Route::resource('companies', CompanyController::class);
+    Route::resource('employees', EmployeeController::class);
+});
