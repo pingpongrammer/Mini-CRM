@@ -20,9 +20,18 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($validated)) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('companies');
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials']);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken(); 
+
+        return redirect('/'); 
     }
 }

@@ -321,6 +321,12 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+        [
+            'type' => 'sidebar-menu',
+            'text' => 'Company',
+            'url' => 'companies', 
+            'icon' => 'fas fa-building',
+        ],
         
         [
             'type' => 'sidebar-menu',
@@ -328,12 +334,17 @@ return [
             'url' => 'employees', 
             'icon' => 'fas fa-user-tie',
         ],
+
         [
             'type' => 'sidebar-menu',
-            'text' => 'Company',
-            'url' => 'companies', 
-            'icon' => 'fas fa-building',
+            'text' => 'Logout',
+            'url' => '#', 
+            'icon' => 'fas fa-sign-out-alt',
+             'id' => 'logout-sidebar',
+            'onclick' => "event.preventDefault(); document.getElementById('logout-form').submit();"
         ],
+        
+
         
     ],
 

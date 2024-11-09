@@ -3,46 +3,52 @@
 @section('title', 'Add Employee')
 
 @section('content_header')
-    <h1>Add New Employee</h1>
+    <h1 class="text-center text-primary font-weight-bold">Add New Employee</h1>
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            <form action="{{ route('employees.store') }}" method="POST">
-                @csrf
+    <div class="d-flex justify-content-center">
+        <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; margin-top: 20px; border-radius: 15px;">
+            <div class="card-body">
+                <form action="{{ route('employees.store') }}" method="POST">
+                    @csrf
 
-                <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" name="first_name" required>
-                </div>
+                    <div class="form-group mb-4">
+                        <label for="first_name" class="font-weight-bold text-secondary">First Name</label>
+                        <input type="text" class="form-control border-primary shadow-sm" name="first_name" required placeholder="Enter first name">
+                    </div>
 
-                <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" required>
-                </div>
+                    <div class="form-group mb-4">
+                        <label for="last_name" class="font-weight-bold text-secondary">Last Name</label>
+                        <input type="text" class="form-control border-primary shadow-sm" name="last_name" required placeholder="Enter last name">
+                    </div>
 
-                <div class="form-group">
-                    <label for="company_id">Company</label>
-                    <select name="company_id" class="form-control" required>
-                        @foreach($companies as $company)
-                            <option value="{{ $company->id }}">{{ $company->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                    <div class="form-group mb-4">
+                        <label for="company_id" class="font-weight-bold text-secondary">Company</label>
+                        <select name="company_id" class="form-control border-primary shadow-sm" required>
+                            @foreach($companies as $company)
+                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email">
-                </div>
+                    <div class="form-group mb-4">
+                        <label for="email" class="font-weight-bold text-secondary">Email</label>
+                        <input type="email" class="form-control border-primary shadow-sm" name="email" placeholder="Enter email address">
+                    </div>
 
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" name="phone">
-                </div>
+                    <div class="form-group mb-4">
+                        <label for="phone" class="font-weight-bold text-secondary">Phone</label>
+                        <input type="text" class="form-control border-primary shadow-sm" name="phone" placeholder="Enter phone number">
+                    </div>
 
-                <button type="submit" class="btn btn-primary">Save</button>
-            </form>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary btn-lg shadow-sm w-100" style="border-radius: 50px;">
+                         Save
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @stop
